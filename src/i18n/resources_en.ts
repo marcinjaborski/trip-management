@@ -17,6 +17,10 @@ export const resources_en = {
     },
     tripsList: {
       title: "All trips",
+      sort: "Sort by",
+      none: "None",
+      dateFrom: "Trip start",
+      dateTo: "Trip end",
     },
     fileUploadButton: {
       chooseFile: "Choose one file",

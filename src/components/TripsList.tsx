@@ -1,28 +1,48 @@
 import { TripsListStyled } from "./styles/TripsList.styled";
-import { Box, IconButton, Input, InputAdornment, Typography } from "@mui/material";
+import { Box, IconButton, Input, InputAdornment, MenuItem, TextField, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import SearchIcon from "@mui/icons-material/Search";
 import TripTile, { TripTileData } from "./TripTile";
 import { useListTrips } from "../hooks/useListTrips";
+import { useState } from "react";
 
 const TripsList = () => {
   const { t } = useTranslation("translation", { keyPrefix: "tripsList" });
-  const { data: trips } = useListTrips();
+  const [search, setSearch] = useState("");
+  const [searchParam, setSearchParam] = useState(search);
+  const [sortBy, setSortBy] = useState("none");
+  const { data: trips } = useListTrips(searchParam, sortBy);
 
   return (
     <TripsListStyled>
       <Typography variant="h4" align="center">
         {t("title")}
       </Typography>
-      <Input
-        endAdornment={
-          <InputAdornment position="end">
-            <IconButton>
-              <SearchIcon />
-            </IconButton>
-          </InputAdornment>
-        }
-      />
+      <Box sx={{ display: "flex", gap: "2em" }}>
+        <Input
+          onChange={(event) => setSearch(event.target.value)}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton onClick={() => setSearchParam(search)}>
+                <SearchIcon />
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+        <TextField
+          variant="standard"
+          select
+          label={t("sort")}
+          value={sortBy}
+          onChange={(event) => setSortBy(event.target.value)}
+        >
+          <MenuItem value="none">
+            <i>{t("none")}</i>
+          </MenuItem>
+          <MenuItem value="dateFrom">{t("dateFrom")}</MenuItem>
+          <MenuItem value="dateTo">{t("dateTo")}</MenuItem>
+        </TextField>
+      </Box>
       <Box className="tiles">
         {trips?.map((trip) => (
           <TripTile trip={trip as unknown as TripTileData} key={trip.id} />

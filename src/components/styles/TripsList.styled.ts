@@ -11,7 +11,6 @@ export const TripsListStyled = styled.div`
     padding: 1em;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minmax(250px, auto);
     grid-gap: 1em;
   }
 `;

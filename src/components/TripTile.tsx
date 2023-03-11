@@ -22,8 +22,10 @@ const TripTile = (props: TripTileProps) => {
   return (
     <TripTileStyled elevation={5} onClick={() => navigate(`/trips/${trip.id}`)}>
       <img src={`${fileUrl}/trips/${trip.id}/${trip.images[0]}`} alt={trip.name} />
-      <Typography variant="h5">{trip.name}</Typography>
-      <Typography variant="h6">
+      <Typography variant="h5" align="center">
+        {trip.name}
+      </Typography>
+      <Typography variant="h6" align="center">
         {moment(trip.dateFrom).format("l")} - {moment(trip.dateTo).format("l")}
       </Typography>
     </TripTileStyled>
