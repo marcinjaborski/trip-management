@@ -1,29 +1,35 @@
 import { useTranslation } from "react-i18next";
-import { ChangeEvent } from "react";
 import { FileUploadButtonStyled } from "./styles/FileUploadButton.styled";
 import { useTheme } from "@mui/material";
 
-type FileUploadButtonProps = {};
+type FileUploadButtonProps = {
+  files: FileList | null;
+  onFileSelect: (arg0: FileList | null) => void;
+  multiple?: boolean;
+};
 
 const FileUploadButton = (props: FileUploadButtonProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("translation", { keyPrefix: "fileUploadButton" });
   const theme = useTheme();
+  const { multiple, files, onFileSelect } = props;
 
-  const onFileSelect = (event: ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.target.files?.[0];
-    if (!selectedFile) {
-      return;
-    }
-  };
   return (
-    <FileUploadButtonStyled bgColor={theme.palette.primary.main}>
+    <FileUploadButtonStyled bgColor={theme.palette.primary.main} className="fileUploadButton">
       <label>
-        <input type="file" multiple onChange={onFileSelect} />
-        {t("chooseFile") as string}
+        <input type="file" multiple={multiple} onChange={(event) => onFileSelect(event.target.files)} />
+        {multiple ? t("chooseFiles") : t("chooseFile")}
       </label>
       <span>
-        <strong>{t("chosenFile") as string}</strong>
-        <i className="fileName">{t("none") as string}</i>
+        {files ? (
+          Array.from(files).map((file) => (
+            <>
+              {file.name}
+              <br />
+            </>
+          ))
+        ) : (
+          <i className="fileName">{t("none")}</i>
+        )}
       </span>
     </FileUploadButtonStyled>
   );

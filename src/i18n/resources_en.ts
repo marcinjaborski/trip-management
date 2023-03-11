@@ -11,11 +11,17 @@ export const resources_en = {
       dateFrom: "Trip start",
       dateTo: "Trip end",
       description: "Description / Comments",
-      chooseFile: "Choose files",
+      thumbnail: "Thumbnail:",
+      morePhotos: "More photos",
       create: "Create",
     },
     tripsList: {
       title: "All trips",
+    },
+    fileUploadButton: {
+      chooseFile: "Choose one file",
+      chooseFiles: "Choose multiple files",
+      none: "no files choosen",
     },
   },
 };

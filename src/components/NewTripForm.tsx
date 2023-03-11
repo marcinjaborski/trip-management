@@ -1,9 +1,8 @@
 import { NewTripFormStyled } from "./styles/NewTripForm.styled";
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, FormLabel, TextField, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { useForm } from "react-hook-form";
 import FileUploadButton from "./FIleUploadButton";
-import { useCreateTrip } from "../hooks/useCreateTrip";
+import { useNewTripForm } from "../hooks/useNewTripForm";
 
 export type NewTripFormData = {
   name: string;
@@ -14,23 +13,19 @@ export type NewTripFormData = {
 
 const NewTripForm = () => {
   const { t } = useTranslation("translation", { keyPrefix: "newTripForm" });
-  const { register, handleSubmit, reset } = useForm<NewTripFormData>();
-  const { mutate: create } = useCreateTrip();
+  const { register, handleSubmit, images, setImages, createTrip, thumbnail, setThumbnail } = useNewTripForm();
 
-  const createTrip = (data: NewTripFormData) => {
-    create(data);
-    reset();
-  };
   return (
     <NewTripFormStyled>
       <form onSubmit={handleSubmit(createTrip)}>
-        <Typography variant="h4" align="center">
+        <Typography variant="h4" align="center" className="title">
           {t("title")}
         </Typography>
         <TextField fullWidth label={t("name")} {...register("name")} />
         <TextField
           fullWidth
           type="date"
+          className="dateField"
           label={t("dateFrom")}
           {...register("dateFrom")}
           InputLabelProps={{ shrink: true }}
@@ -38,11 +33,15 @@ const NewTripForm = () => {
         <TextField
           fullWidth
           type="date"
+          className="dateField"
           label={t("dateTo")}
           {...register("dateTo")}
           InputLabelProps={{ shrink: true }}
         />
-        <FileUploadButton />
+        <FormLabel>{t("thumbnail")}</FormLabel>
+        <FileUploadButton files={thumbnail} onFileSelect={(files) => setThumbnail(files)} />
+        <FormLabel>{t("morePhotos")}</FormLabel>
+        <FileUploadButton multiple files={images} onFileSelect={(files) => setImages(files)} />
         <TextField fullWidth multiline rows={3} label={t("description")} {...register("description")} />
         <Button type="submit" variant="contained">
           {t("create")}

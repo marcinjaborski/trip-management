@@ -11,9 +11,29 @@ export const NewTripFormStyled = styled(Paper)`
     display: grid;
     justify-items: center;
     gap: 1em;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  form .title {
+    grid-column: span 4;
+  }
+
+  form .MuiTextField-root {
+    grid-column: span 4;
+  }
+
+  form .dateField {
+    grid-column: span 2;
   }
 
   form button {
-    width: 50%;
+    grid-column: 2 / 4;
+    width: 100%;
+    color: white;
+  }
+
+  form .fileUploadButton {
+    grid-column: span 3;
+    justify-self: flex-start;
   }
 `;

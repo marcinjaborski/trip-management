@@ -1,9 +1,16 @@
-import { useMutation } from "react-query";
-import { NewTripFormData } from "../components/NewTripForm";
+import { useMutation, useQueryClient } from "react-query";
 import pb from "../pb";
 
 export const useCreateTrip = () => {
-  return useMutation((data: NewTripFormData) => {
-    return pb.collection("trips").create(data);
-  });
+  const queryClient = useQueryClient();
+  return useMutation(
+    (data: FormData) => {
+      return pb.collection("trips").create(data);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("list-trips");
+      },
+    }
+  );
 };
