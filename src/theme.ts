@@ -9,7 +9,7 @@ export const theme = createTheme({
       main: "#FCDDB0",
     },
     background: {
-      default: "#FFFAD7",
+      paper: "#FFFAD7",
     },
   },
 });

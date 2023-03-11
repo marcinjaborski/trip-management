@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import "./i18n/i18n";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./theme";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <App />
         </ThemeProvider>
       </BrowserRouter>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   </React.StrictMode>
 );

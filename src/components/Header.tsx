@@ -24,7 +24,7 @@ const Header = () => {
             <AddLocationIcon />
           </Tooltip>
         </ToggleButton>
-        <ToggleButton value="/list" onClick={() => navigate("/list")}>
+        <ToggleButton value="/trips" onClick={() => navigate("/trips")}>
           <Tooltip title={t("list")}>
             <ViewListIcon />
           </Tooltip>

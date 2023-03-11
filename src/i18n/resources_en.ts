@@ -14,5 +14,8 @@ export const resources_en = {
       chooseFile: "Choose files",
       create: "Create",
     },
+    tripsList: {
+      title: "All trips",
+    },
   },
 };
