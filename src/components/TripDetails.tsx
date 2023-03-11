@@ -1,5 +1,5 @@
 import { TripDetailsStyled } from "./styles/TripDetails.styled";
-import { Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useViewTrip } from "../hooks/useViewTrip";
 import { renderDateRange } from "../util";
@@ -21,7 +21,11 @@ const TripDetails = () => {
   const { data: trip } = useViewTrip(id!);
 
   if (!trip) {
-    return <>Not found</>;
+    return (
+      <Paper sx={{ p: 3 }}>
+        <Typography variant="h3">This trip does not exist</Typography>
+      </Paper>
+    );
   }
 
   return (
