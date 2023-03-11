@@ -1,4 +1,4 @@
-import HeaderStyled from "./Header.styled";
+import HeaderStyled from "./styles/Header.styled";
 import HomeIcon from "@mui/icons-material/Home";
 import AddLocationIcon from "@mui/icons-material/AddLocation";
 import ViewListIcon from "@mui/icons-material/ViewList";
@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { t } = useTranslation();
+  const { t } = useTranslation("translation", { keyPrefix: "nav" });
 
   return (
     <HeaderStyled>
