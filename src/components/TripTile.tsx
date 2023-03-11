@@ -1,8 +1,12 @@
 import { TripTileStyled } from "./styles/TripTile.styled";
 import { fileUrl } from "../pb";
-import { Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useDeleteTrip } from "../hooks/useDeleteTrip";
+import { SyntheticEvent } from "react";
 
 export type TripTileData = {
   id: string;
@@ -19,8 +23,22 @@ type TripTileProps = {
 const TripTile = (props: TripTileProps) => {
   const { trip } = props;
   const navigate = useNavigate();
+  const { mutate: deleteTrip } = useDeleteTrip();
+
+  const onTileClick = (event: any) => {
+    const target = event.target.tagName.toLowerCase();
+    if (target !== "button" && target !== "svg") {
+      navigate(`/trips/${trip.id}`);
+    }
+  };
+
+  const onDelete = (event: SyntheticEvent) => {
+    event.preventDefault();
+    deleteTrip(trip.id);
+  };
+
   return (
-    <TripTileStyled elevation={5} onClick={() => navigate(`/trips/${trip.id}`)}>
+    <TripTileStyled elevation={5} onClick={onTileClick}>
       <img src={`${fileUrl}/trips/${trip.id}/${trip.images[0]}`} alt={trip.name} />
       <Typography variant="h5" align="center">
         {trip.name}
@@ -28,6 +46,14 @@ const TripTile = (props: TripTileProps) => {
       <Typography variant="h6" align="center">
         {moment(trip.dateFrom).format("l")} - {moment(trip.dateTo).format("l")}
       </Typography>
+      <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+        <IconButton>
+          <EditIcon />
+        </IconButton>
+        <IconButton onClick={onDelete}>
+          <DeleteIcon />
+        </IconButton>
+      </Box>
     </TripTileStyled>
   );
 };
