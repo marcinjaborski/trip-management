@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const AppStyled = styled.main`
   width: 100%;
-  height: 100vh;
+  min-height: calc(100vh - 20px);
   display: grid;
   grid-template-rows: auto 1fr;
   place-items: center;

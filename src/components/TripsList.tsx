@@ -18,7 +18,7 @@ const TripsList = () => {
       <Typography variant="h4" align="center">
         {t("title")}
       </Typography>
-      <Box sx={{ display: "flex", gap: "2em" }}>
+      <Box className="filters">
         <Input
           onChange={(event) => setSearch(event.target.value)}
           endAdornment={

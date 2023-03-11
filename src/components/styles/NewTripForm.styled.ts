@@ -3,7 +3,7 @@ import { Paper } from "@mui/material";
 
 export const NewTripFormStyled = styled(Paper)`
   width: 40%;
-  height: 100%;
+  min-height: 100%;
   padding: 1em;
   box-sizing: border-box;
 
@@ -35,5 +35,15 @@ export const NewTripFormStyled = styled(Paper)`
   form .fileUploadButton {
     grid-column: span 3;
     justify-self: flex-start;
+  }
+
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 376px) {
+    form .dateField {
+      grid-column: span 4;
+    }
   }
 `;

@@ -4,6 +4,7 @@ import NewTripForm from "./components/NewTripForm";
 import { AppStyled } from "./components/styles/App.styled";
 import TripsList from "./components/TripsList";
 import Home from "./components/Home";
+import TripDetails from "./components/TripDetails";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/new" element={<NewTripForm />} />
         <Route path="/trips" element={<TripsList />} />
+        <Route path="/trips/:id" element={<TripDetails />} />
       </Routes>
     </AppStyled>
   );
