@@ -2,7 +2,7 @@ export const resources_en = {
   translation: {
     nav: {
       home: "Main Page",
-      add: "Add new trip",
+      addNew: "Add new trip",
       list: "View all trips",
     },
     newTripForm: {
@@ -25,7 +25,7 @@ export const resources_en = {
     fileUploadButton: {
       chooseFile: "Choose one file",
       chooseFiles: "Choose multiple files",
-      none: "no files choosen",
+      none: "no files chosen",
     },
   },
 };
