@@ -5,18 +5,28 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
-import { useState } from "react";
+import { createRef, Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 type ImageCarouselProps = {
   images: string[];
+  setLocation: Dispatch<SetStateAction<google.maps.LatLng | google.maps.LatLngLiteral | undefined>>;
 };
 
 function ImageCarousel(props: ImageCarouselProps) {
   const [activeStep, setActiveStep] = useState(0);
-  const { images } = props;
+  const { images, setLocation } = props;
   const maxSteps = images.length;
+  const imageRefs = useRef<RefObject<unknown>[]>([]);
+
+  useEffect(() => {
+    imageRefs.current = Array(images.length).map((_, i) => imageRefs.current[i] || createRef());
+  }, [images]);
+
+  useEffect(() => {
+    setLocation({ lat: 1, lng: 2 });
+  }, [activeStep]);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -43,9 +53,12 @@ function ImageCarousel(props: ImageCarouselProps) {
                   display: "block",
                   overflow: "hidden",
                   width: "100%",
+                  maxHeight: "450px",
+                  objectFit: "contain",
                 }}
                 src={image}
                 alt={image}
+                ref={imageRefs.current[index]}
               />
             ) : null}
           </div>

@@ -6,6 +6,7 @@ import { renderDateRange } from "../util";
 import ImageCarousel from "./ImageCarousel";
 import { fileUrl } from "../pb";
 import Map from "./Map";
+import { useState } from "react";
 
 export type Trip = {
   id: string;
@@ -19,6 +20,7 @@ export type Trip = {
 const TripDetails = () => {
   const { id } = useParams();
   const { data: trip } = useViewTrip(id!);
+  const [currentLocation, setCurrentLocation] = useState<google.maps.LatLng | google.maps.LatLngLiteral>();
 
   if (!trip) {
     return (
@@ -37,8 +39,11 @@ const TripDetails = () => {
         {renderDateRange(trip.dateFrom, trip.dateTo)}
       </Typography>
       <Typography variant="body1">{trip.description}</Typography>
-      <ImageCarousel images={trip.images.map((image) => `${fileUrl}/trips/${trip.id}/${image}`)} />
-      <Map />
+      <ImageCarousel
+        images={trip.images.map((image) => `${fileUrl}/trips/${trip.id}/${image}`)}
+        setLocation={setCurrentLocation}
+      />
+      <Map location={currentLocation} />
     </TripDetailsStyled>
   );
 };
