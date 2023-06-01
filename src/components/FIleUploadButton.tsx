@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { FileUploadButtonStyled } from "./styles/FileUploadButton.styled";
 import { useTheme } from "@mui/material";
+import React from "react";
 
 type FileUploadButtonProps = {
   files: FileList | null;
@@ -21,11 +22,11 @@ const FileUploadButton = (props: FileUploadButtonProps) => {
       </label>
       <span>
         {files ? (
-          Array.from(files).map((file) => (
-            <>
+          Array.from(files).map((file, index) => (
+            <React.Fragment key={index}>
               {file.name}
               <br />
-            </>
+            </React.Fragment>
           ))
         ) : (
           <i className="fileName">{t("none")}</i>
