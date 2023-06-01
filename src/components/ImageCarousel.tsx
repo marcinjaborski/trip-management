@@ -6,12 +6,14 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { createRef, Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
+import { MapLocation, PBImage } from "../types";
+import { fileUrl } from "../pb";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 type ImageCarouselProps = {
-  images: string[];
-  setLocation: Dispatch<SetStateAction<google.maps.LatLng | google.maps.LatLngLiteral | undefined>>;
+  images: PBImage[];
+  setLocation: Dispatch<SetStateAction<MapLocation | undefined>>;
 };
 
 function ImageCarousel(props: ImageCarouselProps) {
@@ -19,13 +21,14 @@ function ImageCarousel(props: ImageCarouselProps) {
   const { images, setLocation } = props;
   const maxSteps = images.length;
   const imageRefs = useRef<RefObject<unknown>[]>([]);
+  const imageUrls = images.map((image) => `${fileUrl}/images/${image.id}/${image.image}`);
 
   useEffect(() => {
     imageRefs.current = Array(images.length).map((_, i) => imageRefs.current[i] || createRef());
   }, [images]);
 
   useEffect(() => {
-    setLocation({ lat: 1, lng: 2 });
+    setLocation(images[activeStep].coords);
   }, [activeStep]);
 
   const handleNext = () => {
@@ -43,7 +46,7 @@ function ImageCarousel(props: ImageCarouselProps) {
   return (
     <Box sx={{ p: 2 }}>
       <AutoPlaySwipeableViews index={activeStep} onChangeIndex={handleStepChange} enableMouseEvents>
-        {images.map((image, index) => (
+        {imageUrls.map((image, index) => (
           <div key={image}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box

@@ -8,11 +8,12 @@ const containerStyle = {
 };
 
 type MapProps = {
-  location?: MapLocation;
+  center?: MapLocation;
+  markers?: MapLocation[];
 };
 
 function Map(props: MapProps) {
-  const [location, setLocation] = useState<MapLocation | null>(props.location || null);
+  const { center, markers } = props;
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: import.meta.env.VITE_GOOGLEMAPS_API_KEY,
@@ -21,10 +22,16 @@ function Map(props: MapProps) {
   const [map, setMap] = useState<google.maps.Map | null>(null);
 
   useEffect(() => {
+    if (center) return;
     navigator.geolocation.getCurrentPosition((pos) => {
-      setLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+      map?.setCenter({ lat: pos.coords.latitude, lng: pos.coords.longitude });
     });
   }, []);
+
+  useEffect(() => {
+    if (!center) return;
+    map?.setCenter(center);
+  }, [center]);
 
   const onLoad = React.useCallback((map: google.maps.Map) => {
     setMap(map);
@@ -34,9 +41,11 @@ function Map(props: MapProps) {
     setMap(null);
   }, []);
 
-  return isLoaded && location ? (
-    <GoogleMap mapContainerStyle={containerStyle} center={location} zoom={12} onLoad={onLoad} onUnmount={onUnmount}>
-      <Marker position={location}></Marker>
+  return isLoaded && center ? (
+    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12} onLoad={onLoad} onUnmount={onUnmount}>
+      {markers?.map((coords, index) => (
+        <Marker position={coords} key={index} />
+      ))}
     </GoogleMap>
   ) : (
     <></>

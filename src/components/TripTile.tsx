@@ -7,17 +7,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useDeleteTrip } from "../hooks/useDeleteTrip";
 import { SyntheticEvent } from "react";
 import { renderDateRange } from "../util";
-
-export type TripTileData = {
-  id: string;
-  images: string[];
-  name: string;
-  dateFrom: string;
-  dateTo: string;
-};
+import { PBTrip } from "../types";
 
 type TripTileProps = {
-  trip: TripTileData;
+  trip: PBTrip;
 };
 
 const TripTile = (props: TripTileProps) => {
@@ -39,7 +32,7 @@ const TripTile = (props: TripTileProps) => {
 
   return (
     <TripTileStyled elevation={5} onClick={onTileClick}>
-      <img src={`${fileUrl}/trips/${trip.id}/${trip.images[0]}`} alt={trip.name} />
+      <img src={`${fileUrl}/images/${trip.thumbnail}/${trip.expand.thumbnail?.image}`} alt={trip.name} />
       <Typography variant="h5" align="center">
         {trip.name}
       </Typography>

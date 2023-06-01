@@ -4,23 +4,14 @@ import { useParams } from "react-router-dom";
 import { useViewTrip } from "../hooks/useViewTrip";
 import { renderDateRange } from "../util";
 import ImageCarousel from "./ImageCarousel";
-import { fileUrl } from "../pb";
 import Map from "./Map";
 import { useState } from "react";
-
-export type Trip = {
-  id: string;
-  name: string;
-  dateFrom: string;
-  dateTo: string;
-  images: string[];
-  description: string;
-};
+import { MapLocation, PBImage } from "../types";
 
 const TripDetails = () => {
   const { id } = useParams();
   const { data: trip } = useViewTrip(id!);
-  const [currentLocation, setCurrentLocation] = useState<google.maps.LatLng | google.maps.LatLngLiteral>();
+  const [currentLocation, setCurrentLocation] = useState<MapLocation>();
 
   if (!trip) {
     return (
@@ -29,6 +20,10 @@ const TripDetails = () => {
       </Paper>
     );
   }
+
+  const images: PBImage[] = [];
+  if (trip.expand.thumbnail) images.push(trip.expand.thumbnail);
+  if (trip.expand.images) images.push(...trip.expand.images);
 
   return (
     <TripDetailsStyled>
@@ -39,11 +34,8 @@ const TripDetails = () => {
         {renderDateRange(trip.dateFrom, trip.dateTo)}
       </Typography>
       <Typography variant="body1">{trip.description}</Typography>
-      <ImageCarousel
-        images={trip.images.map((image) => `${fileUrl}/trips/${trip.id}/${image}`)}
-        setLocation={setCurrentLocation}
-      />
-      <Map location={currentLocation} />
+      {trip.expand.images?.length ? <ImageCarousel images={images} setLocation={setCurrentLocation} /> : null}
+      <Map center={currentLocation} markers={images.map((image) => image.coords)} />
     </TripDetailsStyled>
   );
 };

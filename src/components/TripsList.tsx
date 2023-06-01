@@ -2,7 +2,7 @@ import { TripsListStyled } from "./styles/TripsList.styled";
 import { Box, IconButton, Input, InputAdornment, MenuItem, TextField, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import SearchIcon from "@mui/icons-material/Search";
-import TripTile, { TripTileData } from "./TripTile";
+import TripTile from "./TripTile";
 import { useListTrips } from "../hooks/useListTrips";
 import { useState } from "react";
 
@@ -45,7 +45,7 @@ const TripsList = () => {
       </Box>
       <Box className="tiles">
         {trips?.map((trip) => (
-          <TripTile trip={trip as unknown as TripTileData} key={trip.id} />
+          <TripTile trip={trip} key={trip.id} />
         ))}
       </Box>
     </TripsListStyled>

@@ -7,9 +7,15 @@ export const useCreateTrip = (onSuccess: () => void) => {
 
   const createImage = async (image: File): Promise<string> => {
     const formData = new FormData();
-    const thumbnailLocation = await exifr.gps(image);
+    const location = await exifr.gps(image);
     formData.append("image", image);
-    formData.append("coords", JSON.stringify(thumbnailLocation));
+    formData.append(
+      "coords",
+      JSON.stringify({
+        lat: location.latitude,
+        lng: location.longitude,
+      })
+    );
     const response = await pb.collection("images").create(formData);
     return response.id;
   };
