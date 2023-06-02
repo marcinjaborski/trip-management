@@ -16,7 +16,7 @@ export type PBTrip = Record & {
   description: string;
   name: string;
   images: string[];
-  thumbnail: string[];
+  thumbnail: string;
   expand: {
     images?: PBImage[];
     thumbnail?: PBImage;
