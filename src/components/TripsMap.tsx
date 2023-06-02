@@ -9,8 +9,8 @@ const containerStyle = {
 };
 
 type MapProps = {
-  images?: PBImage[];
-  trips?: PBTrip[];
+  images: PBImage[];
+  trips: PBTrip[];
 };
 
 export const TripsMap = React.memo((props: MapProps) => {
@@ -20,7 +20,7 @@ export const TripsMap = React.memo((props: MapProps) => {
 
   return isLoaded && center ? (
     <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12} onLoad={onLoad} onUnmount={onUnmount}>
-      {images?.map((image) => (
+      {images.map((image) => (
         <Marker position={image.coords} key={image.id} onClick={() => onMarkerClick(image.id)} />
       ))}
       {clickedImage && clickedTrip ? (
