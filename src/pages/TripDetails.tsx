@@ -5,7 +5,7 @@ import { useState } from "react";
 import { MapLocation, PBImage } from "../types";
 import { TripDetailsStyled } from "@src/components/styles";
 import { useViewTrip } from "@src/hooks";
-import { ImageCarousel, Map } from "@src/components";
+import { ImageCarousel, TripDetailsMap } from "@src/components";
 
 export const TripDetails = () => {
   const { id } = useParams();
@@ -34,7 +34,7 @@ export const TripDetails = () => {
       </Typography>
       <Typography variant="body1">{trip.description}</Typography>
       {trip.expand.images?.length ? <ImageCarousel images={images} setLocation={setCurrentLocation} /> : null}
-      <Map center={currentLocation} markers={images.map((image) => image.coords)} />
+      <TripDetailsMap center={currentLocation} markers={images.map((image) => image.coords)} />
     </TripDetailsStyled>
   );
 };

@@ -1,5 +1,5 @@
 export * from "./Header";
-export * from "./Map";
+export * from "./TripDetailsMap";
 export * from "./FIleUploadButton";
 export * from "./TripsMap";
 export * from "./ImageCarousel";
