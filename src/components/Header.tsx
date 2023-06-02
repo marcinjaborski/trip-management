@@ -1,4 +1,4 @@
-import HeaderStyled from "./styles/Header.styled";
+import { HeaderStyled } from "./styles";
 import HomeIcon from "@mui/icons-material/Home";
 import AddLocationIcon from "@mui/icons-material/AddLocation";
 import ViewListIcon from "@mui/icons-material/ViewList";
@@ -6,7 +6,7 @@ import { ToggleButton, ToggleButtonGroup, Tooltip } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const Header = () => {
+export const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation("translation", { keyPrefix: "nav" });
@@ -33,5 +33,3 @@ const Header = () => {
     </HeaderStyled>
   );
 };
-
-export default Header;

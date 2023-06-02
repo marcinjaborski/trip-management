@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { FileUploadButtonStyled } from "./styles/FileUploadButton.styled";
 import { useTheme } from "@mui/material";
 import React from "react";
+import { FileUploadButtonStyled } from "./styles";
 
 type FileUploadButtonProps = {
   files: FileList | null;
@@ -9,7 +9,7 @@ type FileUploadButtonProps = {
   multiple?: boolean;
 };
 
-const FileUploadButton = (props: FileUploadButtonProps) => {
+export const FileUploadButton = (props: FileUploadButtonProps) => {
   const { t } = useTranslation("translation", { keyPrefix: "fileUploadButton" });
   const theme = useTheme();
   const { multiple, files, onFileSelect } = props;
@@ -35,5 +35,3 @@ const FileUploadButton = (props: FileUploadButtonProps) => {
     </FileUploadButtonStyled>
   );
 };
-
-export default FileUploadButton;

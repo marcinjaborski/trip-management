@@ -1,4 +1,4 @@
-import { NewTripFormData } from "../components/NewTripForm";
+import { NewTripFormData } from "@src/pages";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCreateTrip } from "./useCreateTrip";

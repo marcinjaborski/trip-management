@@ -16,7 +16,7 @@ type ImageCarouselProps = {
   setLocation: Dispatch<SetStateAction<MapLocation | undefined>>;
 };
 
-function ImageCarousel(props: ImageCarouselProps) {
+export const ImageCarousel = (props: ImageCarouselProps) => {
   const [activeStep, setActiveStep] = useState(0);
   const { images, setLocation } = props;
   const maxSteps = images.length;
@@ -86,6 +86,4 @@ function ImageCarousel(props: ImageCarouselProps) {
       />
     </Box>
   );
-}
-
-export default ImageCarousel;
+};

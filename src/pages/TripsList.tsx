@@ -1,12 +1,12 @@
-import { TripsListStyled } from "./styles/TripsList.styled";
+import { TripsListStyled } from "@src/components/styles";
 import { Box, IconButton, Input, InputAdornment, MenuItem, TextField, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import SearchIcon from "@mui/icons-material/Search";
-import TripTile from "./TripTile";
-import { useListTrips } from "../hooks/useListTrips";
+import { useListTrips } from "@src/hooks";
 import { useState } from "react";
+import { TripTile } from "@src/components";
 
-const TripsList = () => {
+export const TripsList = () => {
   const { t } = useTranslation("translation", { keyPrefix: "tripsList" });
   const [search, setSearch] = useState("");
   const [searchParam, setSearchParam] = useState(search);
@@ -51,5 +51,3 @@ const TripsList = () => {
     </TripsListStyled>
   );
 };
-
-export default TripsList;

@@ -12,7 +12,7 @@ type MapProps = {
   trips?: PBTrip[];
 };
 
-function Map(props: MapProps) {
+export const TripsMap = React.memo((props: MapProps) => {
   const { images, trips } = props;
   const [clickedMarker, setClickedMarker] = useState("");
   const { isLoaded } = useJsApiLoader({
@@ -68,6 +68,4 @@ function Map(props: MapProps) {
   ) : (
     <></>
   );
-}
-
-export default React.memo(Map);
+});

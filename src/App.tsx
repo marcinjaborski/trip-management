@@ -1,11 +1,7 @@
-import Header from "./components/Header";
 import { Route, Routes } from "react-router-dom";
-import NewTripForm from "./components/NewTripForm";
-import { AppStyled } from "./components/styles/App.styled";
-import TripsList from "./components/TripsList";
-import Home from "./components/Home";
-import TripDetails from "./components/TripDetails";
-import Error404 from "./components/Error404";
+import { Error404, Home, NewTripForm, TripDetails, TripsList } from "./pages";
+import { AppStyled } from "@src/components/styles";
+import { Header } from "@src/components";
 
 const App = () => {
   return (

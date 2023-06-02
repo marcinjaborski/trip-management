@@ -12,7 +12,7 @@ type MapProps = {
   markers?: MapLocation[];
 };
 
-function Map(props: MapProps) {
+export const Map = React.memo((props: MapProps) => {
   const { center, markers } = props;
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -50,6 +50,4 @@ function Map(props: MapProps) {
   ) : (
     <></>
   );
-}
-
-export default React.memo(Map);
+});

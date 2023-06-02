@@ -1,8 +1,8 @@
-import { NewTripFormStyled } from "./styles/NewTripForm.styled";
 import { Button, FormLabel, TextField, Typography } from "@mui/material";
+import { FileUploadButton } from "@src/components";
 import { useTranslation } from "react-i18next";
-import FileUploadButton from "./FIleUploadButton";
-import { useNewTripForm } from "../hooks/useNewTripForm";
+import { useNewTripForm } from "@src/hooks";
+import { NewTripFormStyled } from "@src/components/styles";
 
 export type NewTripFormData = {
   name: string;
@@ -11,7 +11,7 @@ export type NewTripFormData = {
   description: string;
 };
 
-const NewTripForm = () => {
+export const NewTripForm = () => {
   const { t } = useTranslation("translation", { keyPrefix: "newTripForm" });
   const { register, handleSubmit, images, setImages, createTrip, thumbnail, setThumbnail } = useNewTripForm();
 
@@ -50,5 +50,3 @@ const NewTripForm = () => {
     </NewTripFormStyled>
   );
 };
-
-export default NewTripForm;

@@ -1,10 +1,10 @@
-import { TripTileStyled } from "./styles/TripTile.styled";
+import { TripTileStyled } from "./styles";
 import { fileUrl } from "../pb";
 import { Box, IconButton, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useDeleteTrip } from "../hooks/useDeleteTrip";
+import { useDeleteTrip } from "@src/hooks";
 import { SyntheticEvent } from "react";
 import { renderDateRange } from "../util";
 import { PBTrip } from "../types";
@@ -13,7 +13,7 @@ type TripTileProps = {
   trip: PBTrip;
 };
 
-const TripTile = (props: TripTileProps) => {
+export const TripTile = (props: TripTileProps) => {
   const { trip } = props;
   const navigate = useNavigate();
   const { mutate: deleteTrip } = useDeleteTrip();
@@ -50,5 +50,3 @@ const TripTile = (props: TripTileProps) => {
     </TripTileStyled>
   );
 };
-
-export default TripTile;

@@ -1,14 +1,13 @@
-import { TripDetailsStyled } from "./styles/TripDetails.styled";
 import { Paper, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { useViewTrip } from "../hooks/useViewTrip";
 import { renderDateRange } from "../util";
-import ImageCarousel from "./ImageCarousel";
-import Map from "./Map";
 import { useState } from "react";
 import { MapLocation, PBImage } from "../types";
+import { TripDetailsStyled } from "@src/components/styles";
+import { useViewTrip } from "@src/hooks";
+import { ImageCarousel, Map } from "@src/components";
 
-const TripDetails = () => {
+export const TripDetails = () => {
   const { id } = useParams();
   const { data: trip } = useViewTrip(id!);
   const [currentLocation, setCurrentLocation] = useState<MapLocation>();
@@ -39,5 +38,3 @@ const TripDetails = () => {
     </TripDetailsStyled>
   );
 };
-
-export default TripDetails;
