@@ -1,12 +1,11 @@
 import { TripTileStyled } from "./styles";
-import { fileUrl } from "../pb";
 import { Box, IconButton, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDeleteTrip } from "@src/hooks";
 import { SyntheticEvent } from "react";
-import { renderDateRange } from "../util";
+import { getImageUrl, renderDateRange } from "../util";
 import { PBTrip } from "../types";
 
 type TripTileProps = {
@@ -32,7 +31,7 @@ export const TripTile = (props: TripTileProps) => {
 
   return (
     <TripTileStyled elevation={5} onClick={onTileClick}>
-      <img src={`${fileUrl}/images/${trip.thumbnail}/${trip.expand.thumbnail?.image}`} alt={trip.name} />
+      <img src={getImageUrl(trip.expand.thumbnail!)} alt={trip.name} />
       <Typography variant="h5" align="center">
         {trip.name}
       </Typography>

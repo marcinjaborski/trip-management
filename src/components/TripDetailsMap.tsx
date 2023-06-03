@@ -5,11 +5,11 @@ import { useMap } from "@src/hooks";
 
 const containerStyle = {
   width: "100%",
-  height: "100vh",
+  height: "calc(100vh - 100px)",
 };
 
 type MapProps = {
-  center?: MapLocation;
+  center: MapLocation;
   markers?: MapLocation[];
 };
 
@@ -17,7 +17,7 @@ export const TripDetailsMap = React.memo((props: MapProps) => {
   const { center, markers } = props;
   const { isLoaded, onLoad, onUnmount } = useMap(center);
 
-  return isLoaded && center ? (
+  return isLoaded ? (
     <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12} onLoad={onLoad} onUnmount={onUnmount}>
       {markers?.map((coords, index) => (
         <Marker position={coords} key={index} />

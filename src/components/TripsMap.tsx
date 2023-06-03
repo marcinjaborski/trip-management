@@ -2,10 +2,13 @@ import React from "react";
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 import { PBImage, PBTrip } from "../types";
 import { useTripsMap } from "@src/hooks";
+import { InfoWindowStyled } from "@src/components/styles/InfoWindow.styled";
+import { getImageUrl, renderDateRange } from "@src/util";
+import { Link } from "react-router-dom";
 
 const containerStyle = {
   width: "100%",
-  height: "100vh",
+  height: "calc(100vh - 120px)",
 };
 
 type MapProps = {
@@ -25,11 +28,11 @@ export const TripsMap = React.memo((props: MapProps) => {
       ))}
       {clickedImage && clickedTrip ? (
         <InfoWindow position={clickedImage.coords} onCloseClick={onInfoWindowClose}>
-          <div>
-            {clickedImage.image}
-            <br />
-            {clickedTrip.dateFrom} - {clickedTrip.dateTo}
-          </div>
+          <InfoWindowStyled>
+            <Link to={`trips/${clickedTrip.id}`}>{clickedTrip.name}</Link>
+            <span>{renderDateRange(clickedTrip.dateFrom, clickedTrip.dateTo)}</span>
+            <img src={getImageUrl(clickedImage)} alt={clickedTrip.name} />
+          </InfoWindowStyled>
         </InfoWindow>
       ) : null}
     </GoogleMap>

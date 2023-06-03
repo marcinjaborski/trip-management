@@ -7,7 +7,7 @@ import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { createRef, Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
 import { MapLocation, PBImage } from "../types";
-import { fileUrl } from "../pb";
+import { getImageUrl } from "@src/util";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -21,7 +21,7 @@ export const ImageCarousel = (props: ImageCarouselProps) => {
   const { images, setLocation } = props;
   const maxSteps = images.length;
   const imageRefs = useRef<RefObject<unknown>[]>([]);
-  const imageUrls = images.map((image) => `${fileUrl}/images/${image.id}/${image.image}`);
+  const imageUrls = images.map((image) => getImageUrl(image));
 
   useEffect(() => {
     imageRefs.current = Array(images.length).map((_, i) => imageRefs.current[i] || createRef());

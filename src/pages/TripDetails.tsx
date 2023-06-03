@@ -34,7 +34,9 @@ export const TripDetails = () => {
       </Typography>
       <Typography variant="body1">{trip.description}</Typography>
       {trip.expand.images?.length ? <ImageCarousel images={images} setLocation={setCurrentLocation} /> : null}
-      <TripDetailsMap center={currentLocation} markers={images.map((image) => image.coords)} />
+      {currentLocation ? (
+        <TripDetailsMap center={currentLocation} markers={images.map((image) => image.coords)} />
+      ) : null}
     </TripDetailsStyled>
   );
 };
