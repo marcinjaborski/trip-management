@@ -2,14 +2,18 @@ import { HeaderStyled } from "./styles";
 import HomeIcon from "@mui/icons-material/Home";
 import AddLocationIcon from "@mui/icons-material/AddLocation";
 import ViewListIcon from "@mui/icons-material/ViewList";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { ToggleButton, ToggleButtonGroup, Tooltip } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useUser } from "@src/hooks/useUser";
 
 export const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation("translation", { keyPrefix: "nav" });
+  const { isLogged, logout } = useUser();
 
   return (
     <HeaderStyled>
@@ -29,6 +33,19 @@ export const Header = () => {
             <ViewListIcon />
           </Tooltip>
         </ToggleButton>
+        {isLogged ? (
+          <ToggleButton value="/logout" onClick={logout}>
+            <Tooltip title={t("logout")}>
+              <LogoutIcon />
+            </Tooltip>
+          </ToggleButton>
+        ) : (
+          <ToggleButton value="/login" onClick={() => navigate("/login")}>
+            <Tooltip title={t("login")}>
+              <LoginIcon />
+            </Tooltip>
+          </ToggleButton>
+        )}
       </ToggleButtonGroup>
     </HeaderStyled>
   );

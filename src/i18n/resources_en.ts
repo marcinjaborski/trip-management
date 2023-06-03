@@ -4,6 +4,8 @@ export const resources_en = {
       home: "Main Page",
       addNew: "Add new trip",
       list: "View all trips",
+      login: "Log in",
+      logout: "Log out",
     },
     newTripForm: {
       title: "Add new trip",
@@ -26,6 +28,13 @@ export const resources_en = {
       chooseFile: "Choose one file",
       chooseFiles: "Choose multiple files",
       none: "no files chosen",
+    },
+    login: {
+      login: "Login",
+      register: "Register",
+      email: "Email",
+      password: "Password",
+      confirmPassword: "Confirm password",
     },
   },
 };
