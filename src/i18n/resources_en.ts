@@ -41,6 +41,12 @@ export const resources_en = {
       email: "Email",
       password: "Password",
       confirmPassword: "Confirm password",
+      loginError: "User does not exist",
+      registerError: "Account could not be created",
+      required: "This field is required",
+      minLength: "Password must have at least 8 characters",
+      emailInvalid: "Enter valid email",
+      confirmPasswordNotMatch: "Passwords do not match",
     },
     details: {
       back: "Back",

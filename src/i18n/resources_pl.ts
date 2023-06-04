@@ -41,6 +41,8 @@ export const resources_pl = {
       email: "Email",
       password: "Hasło",
       confirmPassword: "Potwierdź hasło",
+      loginError: "Użytkownik nie istnieje",
+      registerError: "Konto nie mogło zostać utworzone",
     },
     details: {
       back: "Poprzednie",
