@@ -8,6 +8,7 @@ import { autoPlay } from "react-swipeable-views-utils";
 import { createRef, Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
 import { MapLocation, PBImage } from "../types";
 import { getImageUrl } from "@src/util";
+import { useTranslation } from "react-i18next";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -17,6 +18,7 @@ type ImageCarouselProps = {
 };
 
 export const ImageCarousel = (props: ImageCarouselProps) => {
+  const { t } = useTranslation("translation", { keyPrefix: "details" });
   const [activeStep, setActiveStep] = useState(0);
   const { images, setLocation } = props;
   const maxSteps = images.length;
@@ -73,14 +75,14 @@ export const ImageCarousel = (props: ImageCarouselProps) => {
         activeStep={activeStep}
         nextButton={
           <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
-            Next
+            {t("back")}
             <KeyboardArrowRight />
           </Button>
         }
         backButton={
           <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
             <KeyboardArrowLeft />
-            Back
+            {t("next")}
           </Button>
         }
       />

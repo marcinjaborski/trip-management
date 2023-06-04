@@ -8,6 +8,8 @@ import { ToggleButton, ToggleButtonGroup, Tooltip } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useUser } from "@src/hooks/useUser";
+import React from "react";
+import { LanguageSelect } from "@src/components/LanguageSelect";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -37,6 +39,7 @@ export const Header = () => {
             </Tooltip>
           </ToggleButton>
         ) : null}
+        <LanguageSelect />
         {isLogged ? (
           <ToggleButton value="/logout" onClick={logout}>
             <Tooltip title={t("logout")}>

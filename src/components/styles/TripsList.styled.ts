@@ -17,6 +17,7 @@ export const TripsListStyled = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1em;
+    align-items: baseline;
   }
 
   @media screen and (max-width: 768px) {

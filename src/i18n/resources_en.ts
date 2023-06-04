@@ -13,7 +13,7 @@ export const resources_en = {
       dateFrom: "Trip start",
       dateTo: "Trip end",
       description: "Description / Comments",
-      thumbnail: "Thumbnail:",
+      thumbnail: "Thumbnail",
       morePhotos: "More photos",
       create: "Create",
     },
@@ -35,6 +35,13 @@ export const resources_en = {
       email: "Email",
       password: "Password",
       confirmPassword: "Confirm password",
+    },
+    details: {
+      back: "Back",
+      next: "Next",
+    },
+    lang: {
+      button: "Change language",
     },
   },
 };
