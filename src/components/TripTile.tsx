@@ -1,7 +1,6 @@
 import { TripTileStyled } from "./styles";
 import { Box, IconButton, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDeleteTrip } from "@src/hooks";
 import { SyntheticEvent } from "react";
@@ -19,14 +18,14 @@ export const TripTile = (props: TripTileProps) => {
 
   const onTileClick = (event: any) => {
     const target = event.target.tagName.toLowerCase();
-    if (target !== "button" && target !== "svg") {
+    if (target !== "button" && target !== "svg" && target !== "path") {
       navigate(`/trips/${trip.id}`);
     }
   };
 
   const onDelete = (event: SyntheticEvent) => {
     event.preventDefault();
-    deleteTrip(trip.id);
+    deleteTrip(trip);
   };
 
   return (
@@ -39,9 +38,6 @@ export const TripTile = (props: TripTileProps) => {
         {renderDateRange(trip.dateFrom, trip.dateTo)}
       </Typography>
       <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <IconButton>
-          <EditIcon />
-        </IconButton>
         <IconButton onClick={onDelete}>
           <DeleteIcon />
         </IconButton>
