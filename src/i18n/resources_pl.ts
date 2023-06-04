@@ -7,6 +7,12 @@ export const resources_pl = {
       login: "Zaloguj",
       logout: "Wyloguj",
     },
+    home: {
+      title: "Trip management",
+      notLogged: "Zaloguj się lub zarejestruj",
+      emptyText: "Nie masz jeszcze żadnych podróży",
+      add: "Dodaj nową",
+    },
     newTripForm: {
       title: "Dodaj nową podróż",
       name: "Nazwa",

@@ -7,6 +7,12 @@ export const resources_en = {
       login: "Log in",
       logout: "Log out",
     },
+    home: {
+      title: "Trip management",
+      notLogged: "Log in first or register",
+      emptyText: "There are no trips yet",
+      add: "Create new",
+    },
     newTripForm: {
       title: "Add new trip",
       name: "Name",
