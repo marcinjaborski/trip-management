@@ -23,16 +23,20 @@ export const Header = () => {
             <HomeIcon />
           </Tooltip>
         </ToggleButton>
-        <ToggleButton value="/new" onClick={() => navigate("/new")}>
-          <Tooltip title={t("addNew")}>
-            <AddLocationIcon />
-          </Tooltip>
-        </ToggleButton>
-        <ToggleButton value="/trips" onClick={() => navigate("/trips")}>
-          <Tooltip title={t("list")}>
-            <ViewListIcon />
-          </Tooltip>
-        </ToggleButton>
+        {isLogged ? (
+          <ToggleButton value="/new" onClick={() => navigate("/new")}>
+            <Tooltip title={t("addNew")}>
+              <AddLocationIcon />
+            </Tooltip>
+          </ToggleButton>
+        ) : null}
+        {isLogged ? (
+          <ToggleButton value="/trips" onClick={() => navigate("/trips")}>
+            <Tooltip title={t("list")}>
+              <ViewListIcon />
+            </Tooltip>
+          </ToggleButton>
+        ) : null}
         {isLogged ? (
           <ToggleButton value="/logout" onClick={logout}>
             <Tooltip title={t("logout")}>

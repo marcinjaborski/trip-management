@@ -18,7 +18,7 @@ export const Login = () => {
       </Tabs>
       <FormStyled onSubmit={activeTab === "login" ? loginUser : registerUser}>
         <TextField label={t("email")} type="email" {...register("email")} />
-        <TextField label={t("password")} type="paswword" {...register("password")} />
+        <TextField label={t("password")} type="password" {...register("password")} />
         {activeTab === "register" ? (
           <TextField label={t("confirmPassword")} type="password" {...register("confirmPassword")} />
         ) : null}

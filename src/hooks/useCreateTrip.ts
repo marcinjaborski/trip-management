@@ -16,6 +16,7 @@ export const useCreateTrip = (onSuccess: () => void) => {
         lng: location.longitude,
       })
     );
+    formData.append("owner", pb.authStore.model!.id);
     const response = await pb.collection("images").create(formData);
     return response.id;
   };
@@ -31,8 +32,8 @@ export const useCreateTrip = (onSuccess: () => void) => {
       return pb.collection("trips").create(data);
     },
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries("list-trips");
+      onSuccess: async () => {
+        await queryClient.invalidateQueries("list-trips");
         onSuccess();
       },
     }
