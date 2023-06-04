@@ -22,6 +22,9 @@ export const resources_en = {
       thumbnail: "Thumbnail",
       morePhotos: "More photos",
       create: "Create",
+      required: "This field is required",
+      thumbnailRequired: "Provide thumbnail for the trip",
+      createError: "Error while creating this trip",
     },
     tripsList: {
       title: "All trips",

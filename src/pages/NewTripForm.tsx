@@ -1,6 +1,5 @@
 import { Button, FormLabel, TextField, Typography } from "@mui/material";
 import { FileUploadButton } from "@src/components";
-import { useTranslation } from "react-i18next";
 import { useNewTripForm } from "@src/hooks";
 import { NewTripFormStyled } from "@src/components/styles";
 
@@ -12,8 +11,8 @@ export type NewTripFormData = {
 };
 
 export const NewTripForm = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "newTripForm" });
-  const { register, handleSubmit, images, setImages, createTrip, thumbnail, setThumbnail } = useNewTripForm();
+  const { t, register, handleSubmit, images, setImages, createTrip, thumbnail, setThumbnail, errors } =
+    useNewTripForm();
 
   return (
     <NewTripFormStyled>
@@ -21,13 +20,25 @@ export const NewTripForm = () => {
         <Typography variant="h4" align="center" className="title">
           {t("title")}
         </Typography>
-        <TextField fullWidth label={t("name")} {...register("name")} />
+        <TextField
+          fullWidth
+          label={t("name")}
+          error={!!errors.name}
+          helperText={errors.name?.message}
+          {...register("name", {
+            required: t("required")!,
+          })}
+        />
         <TextField
           fullWidth
           type="date"
           className="dateField"
           label={t("dateFrom")}
-          {...register("dateFrom")}
+          error={!!errors.dateFrom}
+          helperText={errors.dateFrom?.message}
+          {...register("dateFrom", {
+            required: t("required")!,
+          })}
           InputLabelProps={{ shrink: true }}
         />
         <TextField
@@ -35,7 +46,11 @@ export const NewTripForm = () => {
           type="date"
           className="dateField"
           label={t("dateTo")}
-          {...register("dateTo")}
+          error={!!errors.dateTo}
+          helperText={errors.dateTo?.message}
+          {...register("dateTo", {
+            required: t("required")!,
+          })}
           InputLabelProps={{ shrink: true }}
         />
         <FormLabel>{t("thumbnail")}</FormLabel>

@@ -22,6 +22,9 @@ export const resources_pl = {
       thumbnail: "Główne zdjęcie",
       morePhotos: "Pozostałe zdjęcia",
       create: "Stwórz",
+      required: "To pole jest wymagane",
+      thumbnailRequired: "Dodaj główne zdjęcie podróży",
+      createError: "Wystąpił błąd podczas tworzenia podróży",
     },
     tripsList: {
       title: "Wszystkie podróże",
@@ -43,6 +46,10 @@ export const resources_pl = {
       confirmPassword: "Potwierdź hasło",
       loginError: "Użytkownik nie istnieje",
       registerError: "Konto nie mogło zostać utworzone",
+      required: "To pole jest wymagane",
+      minLength: "Hasło musi mieć conajmniej 8 znaków",
+      emailInvalid: "Wpisz poprawny email",
+      confirmPasswordNotMatch: "Hasła się nie zgadzają",
     },
     details: {
       back: "Poprzednie",
