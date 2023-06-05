@@ -1,0 +1,36 @@
+version: "3.4"
+services:
+  vite_docker:
+    image: node:alpine
+    container_name: vite_docker
+    entrypoint: /bin/sh
+    restart: always
+    networks:
+      - trip-network
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    ports:
+      - "4173:4173"
+    working_dir: /srv/app
+    volumes:
+        - type: bind
+          source: ./
+          target: /srv/app
+    tty: true
+  pb:
+    image: alpine:latest
+    container_name: pb
+    restart: always
+    networks:
+      - trip-network
+    build:
+      context: .
+      dockerfile: DockerfilePB
+      target: base
+    ports:
+      - "8080:8080"
+
+networks:
+  trip-network:
